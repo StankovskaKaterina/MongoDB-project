@@ -15,6 +15,13 @@ var result = db.movies_metadata.aggregate([
   },
   {
     $sort: { _id: 1 }
+  },
+  {
+    $project: {
+      _id: 0,          // Exclude the _id field
+      Year: "$_id",    // Rename _id to Year
+      Count: "$count"
+    }
   }
 ]);
 
