@@ -5,9 +5,17 @@ db.movies_metadata.aggregate([
     }
   },
   {
+    $unwind: "$spoken_languages"
+  },
+  {
     $group: {
       _id: "$spoken_languages.name",
       count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: {
+      count: -1
     }
   }
 ]);
